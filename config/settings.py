@@ -35,7 +35,7 @@ ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
 MY_APPS = [
     'apps.accounts',
     'apps.election',
-    'apps.citizen',
+    'apps.citizen',  
     'apps.candidates',
 ]
 
