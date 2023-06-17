@@ -34,6 +34,7 @@ ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
 # Application definition
 MY_APPS = [
     'apps.accounts',
+    'apps.elections',
 ]
 
 THIRDS_PARTY_APPS = [
@@ -121,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.Worker'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -150,9 +151,11 @@ PHONENUMBER_DEFAULT_REGION = 'KG'
 
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
