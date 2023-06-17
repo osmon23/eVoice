@@ -6,7 +6,8 @@ from django.core.mail import send_mail
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .constants import StatusChoice, Choices
-from apps.election.models import Candidate, Election
+from apps.election.models import Election
+from apps.candidates.models import Candidate
 
 
 class Referendum(models.Model):
@@ -16,6 +17,7 @@ class Referendum(models.Model):
     )
     biometry = models.CharField(
         _('Biometry'),
+        max_length=100,
     )
     photo = models.ImageField(
         _('Photo'),
@@ -23,7 +25,8 @@ class Referendum(models.Model):
     )
     choice = models.CharField(
         _('Choice'),
-        choices=Choices.CHOICES,
+        choices=Choices.choices,
+        max_length=100,
     )
     election = models.ForeignKey(
         Election,
@@ -40,8 +43,8 @@ class Referendum(models.Model):
         return self.INN
 
     class Meta:
-        verbose_name = _('Refere')
-        verbose_name_plural = _('Refere')
+        verbose_name = _('Referendum')
+        verbose_name_plural = _('Referendums')
 
 
 class Citizen(Referendum, models.Model):
@@ -61,15 +64,16 @@ class Citizen(Referendum, models.Model):
     )
     status = models.CharField(
         _('Status'),
-        choices=StatusChoice.CHOICES,
+        choices=StatusChoice.choices,
+        max_length=100,
     )
 
     def __str__(self):
         return self.email
 
     class Meta:
-        verbose_name = _('Candidate')
-        verbose_name_plural = _('Candidates')
+        verbose_name = _('Citizen')
+        verbose_name_plural = _('Citizens')
 
     def save(self, *args, **kwargs):
         if self.status == StatusChoice.APPROVED:

@@ -11,6 +11,7 @@ class CandidateViewSet(viewsets.ModelViewSet):
 
 class CandidateStatisticView(viewsets.ModelViewSet):
     serializer_class = CandidateStatisticSerializer
+    queryset = Candidate.objects.all()
     lookup_field = 'election_pk'
 
     def get_queryset(self):

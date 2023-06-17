@@ -21,17 +21,20 @@ class Referendum(admin.ModelAdmin):
 
 @admin.register(Citizen)
 class Citizen(admin.ModelAdmin):
-    list_display = (
-        'phone_number',
-        'email',
-        'video',
-        'candidate',
-        'status',
-    )
+    # list_display = (
+    #     'phone_number',
+    #     'email',
+    #     'video',
+    #     'candidate',
+    #     'status',
+    # )
     readonly_fields = (
         'phone_number',
         'email',
         'video',
         'candidate',
-        'status',
+        'INN',
+        'biometry',
+        'choice',
+        'photo',
     )

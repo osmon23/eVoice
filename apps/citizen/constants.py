@@ -3,8 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Choices(models.IntegerChoices):
-    ACCEPT = 'A', _('Accept')
-    REJECT = 'R', _('Reject')
+    ACCEPT = True, _('Accept')
+    REJECT = False, _('Reject')
 
 
 class StatusChoice(models.TextChoices):

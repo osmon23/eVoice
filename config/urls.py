@@ -42,6 +42,8 @@ api_v1_urlpatterns = [
     path('token/', include(auth_urlpatterns)),
     path('accounts/', include('apps.accounts.urls')),
     path('election/', include('apps.election.urls')),
+    path('citizen/', include('apps.citizen.urls')),
+    path('candidates/', include('apps.candidates.urls')),
 ]
 
 urlpatterns = [
