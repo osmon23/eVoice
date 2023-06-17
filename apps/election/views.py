@@ -1,12 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Election
-from django.views import View
-from .models import Election
+from .models import Election, ReferendumType
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
 
-from .serializers import ElectionSerializer
+from .serializers import ElectionSerializer, ReferendumTypeSerializer
 
 
 class ElectionListView(APIView):
@@ -22,3 +19,16 @@ class ElectionDetailView(APIView):
         serializer = ElectionSerializer(election)
         return Response(serializer.data)
 
+
+class ReferendumListView(APIView):
+    def get(self, request):
+        referendum = ReferendumType.objects.all()
+        serializer = ReferendumTypeSerializer(referendum)
+        return Response(serializer.data)
+
+
+class ReferendumTypeDetailView(APIView):
+    def get(self, request, referendum_id):
+        referendum = get_object_or_404(ReferendumType, pk=referendum_id)
+        serializer = ReferendumTypeSerializer(referendum)
+        return Response(serializer.data)

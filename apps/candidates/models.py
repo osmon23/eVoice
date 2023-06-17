@@ -32,7 +32,13 @@ class Candidate(models.Model):
     photo = models.ImageField(
         _('photo'), 
         upload_to='candidate_photos/'
-        )
+    )
+    voice = models.PositiveIntegerField(
+        _('Voice'),
+        default=0,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = _('Candidate')

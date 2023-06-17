@@ -12,10 +12,10 @@ class CandidateViewSet(viewsets.ModelViewSet):
 class CandidateStatisticView(viewsets.ModelViewSet):
     serializer_class = CandidateStatisticSerializer
     queryset = Candidate.objects.all()
-    lookup_field = 'election_pk'
+    lookup_field = 'election'
 
-    def get_queryset(self):
-        election = self.kwargs['election_pk']
+    def get_queryset(self, *args, **kwargs):
+        election = self.kwargs['election']
         filtering_by_election = Candidate.objects.filter(election=election)
         candidate_statistic = filtering_by_election.values('name').annotate(
             counting=Count('name'),
