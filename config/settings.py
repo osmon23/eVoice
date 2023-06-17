@@ -34,7 +34,12 @@ ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
 # Application definition
 MY_APPS = [
     'apps.accounts',
+<<<<<<< HEAD
+    'apps.election',
     'apps.citizen',
+=======
+    'apps.candidates',
+>>>>>>> 95225b0 (add candidates models, and candidates functionals, and serializers)
 ]
 
 THIRDS_PARTY_APPS = [
