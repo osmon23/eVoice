@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.mail import send_mail
+
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -29,6 +31,10 @@ class Referendum(models.Model):
         verbose_name=_('Election'),
         related_name='elections',
     )
+    email = models.EmailField(
+        _('Email Address'),
+        unique=True,
+    )
 
     def __str__(self):
         return self.INN
@@ -41,10 +47,6 @@ class Referendum(models.Model):
 class Citizen(Referendum, models.Model):
     phone_number = PhoneNumberField(
         _('Phone Number'),
-        unique=True,
-    )
-    email = models.EmailField(
-        _('Email Address'),
         unique=True,
     )
     video = models.FileField(
@@ -68,3 +70,22 @@ class Citizen(Referendum, models.Model):
     class Meta:
         verbose_name = _('Candidate')
         verbose_name_plural = _('Candidates')
+
+    def save(self, *args, **kwargs):
+        if self.status == StatusChoice.APPROVED:
+            send_mail(
+                'Elections',
+                'Hello, your vote has been counted',
+                'dastiw1910@gmail.com',
+                [self.email],
+                fail_silently=False,
+            )
+        elif self.status == StatusChoice.REFUSED:
+            send_mail(
+                'Elections',
+                'Hello, your vote has been rejected, please try again',
+                'dastiw1910@gmail.com',
+                [self.email],
+                fail_silently=False,
+            )
+        return super().save(*args, **kwargs)
