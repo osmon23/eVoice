@@ -35,6 +35,7 @@ ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
 MY_APPS = [
     'apps.accounts',
     'apps.election',
+    'apps.citizen',
 ]
 
 THIRDS_PARTY_APPS = [
@@ -148,8 +149,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PHONENUMBER_DEFAULT_REGION = 'KG'
 
-
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -158,7 +157,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -192,7 +190,6 @@ SPECTACULAR_SETTINGS = {
     'REDOC_DIST': 'SIDECAR',
     # OTHER SETTINGS
 }
-
 
 with contextlib.suppress(ImportError):
     from .local_settings import *
