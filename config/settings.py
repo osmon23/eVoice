@@ -34,6 +34,7 @@ ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
 # Application definition
 MY_APPS = [
     'apps.accounts',
+    'apps.citizen',
 ]
 
 THIRDS_PARTY_APPS = [
@@ -147,8 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PHONENUMBER_DEFAULT_REGION = 'KG'
 
-
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
@@ -157,7 +156,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -192,14 +190,12 @@ SPECTACULAR_SETTINGS = {
     # OTHER SETTINGS
 }
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env_config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env_config('EMAIL_HOST_PASSWORD')
-
 
 with contextlib.suppress(ImportError):
     from .local_settings import *
