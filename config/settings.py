@@ -32,11 +32,7 @@ ALLOWED_HOSTS = env_config('ALLOWED_HOSTS').split(',')
 
 # Application definition
 MY_APPS = [
-    # 'apps.authentication',
-    # 'apps.voting',
-    # 'apps.audit',
-    # 'apps.pilots',
-    # 'apps.information'
+    'apps.accounts',
 ]
 
 THIRDS_PARTY_APPS = [
@@ -118,6 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -147,6 +144,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PHONENUMBER_DEFAULT_REGION = 'KG'
+
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 with contextlib.suppress(ImportError):
     from .local_settings import *
