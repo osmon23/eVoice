@@ -6,6 +6,13 @@ from django.contrib.auth.models import AbstractUser, UserManager
 
 from phonenumber_field.modelfields import PhoneNumberField
 
+#
+# class CustomUserManager(UserManager):
+#     def create_superuser(self, email, password=None, **extra_fields):
+#         extra_fields.setdefault("is_staff", True)
+#         extra_fields.setdefault("is_superuser", True)
+#         return self._create_user(email, password, **extra_fields, create_superuser=True)
+
 
 class Worker(AbstractUser):
     first_name = models.CharField(
@@ -27,6 +34,8 @@ class Worker(AbstractUser):
     image = models.ImageField(
         _('image'),
         upload_to='users_images',
+        null=True,
+        blank=True,
     )
     inn = models.PositiveIntegerField(
         _('inn'),
@@ -40,9 +49,6 @@ class Worker(AbstractUser):
     )
 
     objects = UserManager()
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name", "phone_number", "image", "inn", "position"]
 
     class Meta:
         verbose_name = _("worker")
