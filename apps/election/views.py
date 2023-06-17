@@ -1,12 +1,24 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Election
+from django.views import View
+from .models import Election
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+
+from .serializers import ElectionSerializer
 
 
-def election_list(request):
-    elections = Election.objects.all()
-    return render(request, 'election_list.html', {'elections': elections})
+class ElectionListView(APIView):
+    def get(self, request):
+        elections = Election.objects.all()
+        serializer = ElectionSerializer(elections, many=True)
+        return Response(serializer.data)
 
 
-def election_detail(request, election_id):
-    election = get_object_or_404(Election, pk=election_id)
-    return render(request, 'election_detail.html', {'election': election})
+class ElectionDetailView(APIView):
+    def get(self, request, election_id):
+        election = get_object_or_404(Election, pk=election_id)
+        serializer = ElectionSerializer(election)
+        return Response(serializer.data)
+
