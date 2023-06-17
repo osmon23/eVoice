@@ -4,10 +4,6 @@ from apps.election.models import Election
 
 
 class Candidate(models.Model):
-    id = models.AutoField(
-        _('id'),
-        primary_key=True
-        )
     election = models.ForeignKey(
         _('election'),
         Election,
