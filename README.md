@@ -1,2 +1,2 @@
 # eVoice
-front end https://github.com/Janelaxag/fron-enf
+front end https://github.com/Janelaxag/curly-waddle
