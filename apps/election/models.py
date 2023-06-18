@@ -60,32 +60,3 @@ class Election(models.Model):
     class Meta:
         verbose_name = _("Election")
         verbose_name_plural = _("Elections")
-
-
-class ReferendumType(models.Model):
-    title = models.CharField(
-        _('Title'),
-        max_length=255,
-    )
-    description = models.TextField(
-        _('Description'),
-    )
-    voice_positive = models.PositiveIntegerField(
-        _('Voice positive'),
-        default=0,
-        null=True,
-        blank=True,
-    )
-    voice_negative = models.PositiveIntegerField(
-        _('Voice negative'),
-        default=0,
-        null=True,
-        blank=True,
-    )
-
-    def __str__(self):
-        return f'{self.title}: za {self.voice_positive} and protiv {self.voice_negative}'
-
-    class Meta:
-        verbose_name = _('Referendum Type')
-        verbose_name_plural = _('Referendum Types')

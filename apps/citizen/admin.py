@@ -5,12 +5,12 @@ from .models import Referendum, Citizen
 
 @admin.register(Referendum)
 class Referendum(admin.ModelAdmin):
-    list_display = (
-        'INN',
-        'biometry',
-        'choice',
-        'election',
-    )
+    # list_display = (
+    #     'INN',
+    #     'biometry',
+    #     'choice',
+    #     'election',
+    # )
     readonly_fields = (
         'INN',
         'biometry',

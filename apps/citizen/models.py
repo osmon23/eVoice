@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from phonenumber_field.modelfields import PhoneNumberField
 
 from .constants import StatusChoice, Choices
-from apps.election.models import ReferendumType
+from apps.election.models import Election
 from apps.candidates.models import Candidate
 
 
@@ -29,7 +29,7 @@ class Referendum(models.Model):
         max_length=100,
     )
     election = models.ForeignKey(
-        ReferendumType,
+        Election,
         on_delete=models.CASCADE,
         verbose_name=_('Election'),
         related_name='elections',
@@ -38,16 +38,6 @@ class Referendum(models.Model):
         _('Email Address'),
         unique=True,
     )
-
-    def save(self, *args, **kwargs):
-        if self.choice == Choices.ACCEPT:
-            self.election.voice_positive += 1
-        else:
-            self.election.voice_negative += 1
-
-        self.election.save()
-
-        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.INN
